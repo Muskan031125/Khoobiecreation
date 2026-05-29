@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        -webkit-text-size-adjust: 100%;
+        font-feature-settings: "ss01", "cv11";  /* Inter stylistic alternates — nicer single-storey a */
+    }
+    body {
+        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+    }
+    /* Display headings get the editorial Fraunces */
+    h1, h2, h3 {
+        font-family: 'Fraunces', 'Inter', serif;
+        font-feature-settings: "ss01";
+        letter-spacing: -0.015em;
+        overflow-wrap: anywhere;
+    }
+    h4, h5, h6 { overflow-wrap: anywhere; }
+    img, video, iframe, svg { max-width: 100%; }
+    [x-cloak] { display: none !important; }
+    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+    /* Numeric tabular wherever prices/counts appear (price ladders align cleanly) */
+    .tabular-nums, .price { font-variant-numeric: tabular-nums; }
+}
+
+/* Add extra body padding when a sticky bar is mounted, so footer/content isn't covered */
+body:has(#kb-floating-cart [x-show]) { padding-bottom: 6rem; }
+@media (min-width: 640px) {
+    body:has(#kb-floating-cart [x-show]) { padding-bottom: 6.5rem; }
+}
+
+/* Hide scrollbar (used by PDP gallery carousel — track still scrolls/swipes) */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Cart badge bump animation when an item is added */
+@keyframes kb-cart-bump {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.6); background-color: #10b981; }  /* emerald flash */
+  60%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+.animate-cart-bump { animation: kb-cart-bump 0.6s ease-out; }
+
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-bold shadow-cta hover:shadow-cta-lg hover:-translate-y-0.5 transition-all duration-200;
+    }
+    .btn-ghost {
+        @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-semibold border-2 border-slate-200 hover:border-slate-300 transition;
+    }
+    .btn-outline-brand {
+        @apply inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-white hover:bg-brand-50 text-brand-700 font-bold border-2 border-brand-200 hover:border-brand-400 transition;
+    }
+    /* Section eyebrow — small uppercase coloured tag above headings */
+    .eyebrow {
+        @apply text-[11px] sm:text-xs uppercase tracking-[0.15em] font-bold;
+    }
+    /* World-class section heading style — Fraunces, tight tracking, big */
+    .h-display {
+        @apply font-display font-black tracking-tight leading-[1.1];
+    }
+}

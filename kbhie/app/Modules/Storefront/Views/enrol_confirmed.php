@@ -79,7 +79,7 @@ $copy = match($method) {
 
             <div class="mt-7 flex flex-wrap justify-center gap-3">
                 <?php if (session('user')): ?>
-                    <a href="<?= base_url('account/orders') ?>" class="btn-primary">View my bookings</a>
+                 <a href="<?= base_url('app/account/orders') ?>" class="btn-primary">View my bookings</a>
                 <?php else: ?>
                     <a href="<?= base_url('signup') ?>" class="btn-primary">Create account to track</a>
                 <?php endif; ?>

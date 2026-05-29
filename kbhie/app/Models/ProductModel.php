@@ -27,6 +27,7 @@ class ProductModel extends Model
             // p.type + p.partner_id are REQUIRED for the card to route enrol-only types
             // (course/tuition/meetup/service/membership) to /enrol/{vid} and to render
             // affiliate "Buy on Amazon" CTAs. Without them every card falls back to "simple".
+            ->distinct()
             ->select("p.id, p.sku, p.slug, p.name, p.short_desc, p.hero_image, p.type, p.partner_id,
                       p.age_min_years, p.age_max_years,
                       p.rating_avg, p.rating_count, p.sales_count, p.is_featured, p.published_at, p.created_at,

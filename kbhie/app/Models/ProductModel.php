@@ -48,7 +48,10 @@ class ProductModel extends Model
             $b->groupStart()->like('p.name', $term)->orLike('p.short_desc', $term)->groupEnd();
         }
         if (! empty($opts['age_min']))   $b->where('p.age_max_years >=', (int) $opts['age_min']);
-        if (! empty($opts['age_max']))   $b->where('p.age_min_years <=', (int) $opts['age_max']);
+        if (! empty($opts['age_max'])) {
+    $b->where('p.age_min_years <=', (int) $opts['age_max'])
+      ->where('p.age_max_years <=', (int) $opts['age_max']);
+}
         if (! empty($opts['price_min'])) $b->where('v.price >=', (int) $opts['price_min']);
         if (! empty($opts['price_max'])) $b->where('v.price <=', (int) $opts['price_max']);
         if (! empty($opts['rating_min']))$b->where('p.rating_avg >=', (float) $opts['rating_min']);

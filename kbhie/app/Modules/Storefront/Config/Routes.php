@@ -4,6 +4,7 @@
 
 $routes->group('', ['namespace' => 'App\Modules\Storefront\Controllers'], static function ($routes) {
     $routes->get('/shop', 'CatalogController::index');
+    $routes->get('search', 'CatalogController::index');
     $routes->get('shop/(:any)', 'CatalogController::category/$1');
     $routes->get('product/(:any)',           'ProductController::show/$1');
     $routes->get('go/(:any)',                'AffiliateController::go/$1');
